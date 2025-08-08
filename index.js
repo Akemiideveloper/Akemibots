@@ -11,7 +11,7 @@ const MuteManager = require('./database/models/MuteManager');
 const BlacklistProtection = require('./database/models/BlacklistProtection');
 
 // Sistema de prefixo por servidor
-const defaultPrefix = process.env.PREFIX || 'q.';
+const defaultPrefix = process.env.BOT_PREFIX || 'q.';
 
 // Função para obter prefixo do servidor
 async function getServerPrefix(guildId) {
@@ -226,4 +226,4 @@ process.on('SIGTERM', async () => {
 module.exports = { client };
 
 // Login do bot
-client.login(process.env.TOKEN);
+client.login(process.env.DISCORD_TOKEN);
