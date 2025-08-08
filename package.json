@@ -1,0 +1,32 @@
+{
+  "name": "meu-bot-discord",
+  "version": "1.0.0",
+  "description": "Bot Discord.js com sistema de moderação avançado",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "docker:build": "docker build -t discord-bot .",
+    "docker:run": "docker run --env-file .env -d --name discord-bot discord-bot",
+    "docker:compose": "docker-compose up -d",
+    "docker:compose:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f",
+    "docker:restart": "docker-compose restart",
+    "docker:deploy:dev": "./scripts/deploy.sh dev",
+    "docker:deploy:prod": "./scripts/deploy.sh prod",
+    "docker:monitor": "./scripts/monitor.sh status",
+    "docker:monitor:logs": "./scripts/monitor.sh logs",
+    "docker:monitor:health": "./scripts/monitor.sh health",
+    "docker:monitor:full": "./scripts/monitor.sh full",
+    "docker:clean": "docker-compose down --volumes --remove-orphans && docker system prune -f",
+    "docker:backup": "docker run --rm -v discord-bot_logs:/data -v $(pwd):/backup alpine tar czf /backup/logs-backup-$(date +%Y%m%d-%H%M%S).tar.gz -C /data ."
+  },
+  "dependencies": {
+    "discord.js": "^14.0.0",
+    "dotenv": "^16.6.1",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  }
+}
