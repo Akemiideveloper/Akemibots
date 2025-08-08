@@ -1,0 +1,15 @@
+NAME=qwp
+AVATAR=https://i.imgur.com/bWhx7OT.png
+TYPE=bot
+MAIN=index.js
+RAM=100
+AUTORESTART=false
+VERSION=latest
+APT=tools
+START=
+BUILD=
+
+# Variáveis de Ambiente
+ENV_DISCORD_TOKEN=seu_token_do_bot_discord_aqui
+ENV_BOT_PREFIX=q.
+ENV_LOG_LEVEL=info

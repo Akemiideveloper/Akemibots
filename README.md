@@ -18,10 +18,13 @@ npm start
 
 ### Para Discloud:
 ```bash
-# 1. Configurar token no discloud.config
+# 1. Copiar arquivo de exemplo
+copy discloud.config.example discloud.config
+
+# 2. Configurar token no discloud.config
 node setup-discloud.js
 
-# 2. Fazer deploy
+# 3. Fazer deploy
 discloud push
 ```
 
@@ -43,8 +46,8 @@ LOG_LEVEL=info
 
 ## ⚠️ Importante
 - **NUNCA** compartilhe seu token
-- **NUNCA** commite arquivos `.env`
-- O token está protegido no `.gitignore`
+- **NUNCA** commite arquivos `.env` ou `discloud.config`
+- Os arquivos sensíveis estão protegidos no `.gitignore`
 
 ## 📋 Comandos Disponíveis
 - `q.help` - Lista todos os comandos
@@ -55,3 +58,9 @@ LOG_LEVEL=info
 - `q.clear` - Limpar mensagens
 - `q.userinfo` - Informações do usuário
 - `q.serverinfo` - Informações do servidor
+
+## 🔒 Segurança
+O projeto está configurado para proteger seus tokens:
+- `.env` e `discloud.config` estão no `.gitignore`
+- Scripts automáticos para configuração segura
+- Histórico do Git limpo de tokens
