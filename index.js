@@ -3,6 +3,12 @@ const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
 
+// Debug: Verificar variáveis de ambiente
+console.log('🔍 Debug - Variáveis de ambiente:');
+console.log('DISCORD_TOKEN:', process.env.DISCORD_TOKEN ? '✅ Configurado' : '❌ Não configurado');
+console.log('BOT_PREFIX:', process.env.BOT_PREFIX || 'q. (padrão)');
+console.log('NODE_ENV:', process.env.NODE_ENV || 'development');
+
 // Importações do banco de dados
 const { testConnection } = require('./database/connection');
 const ServerConfig = require('./database/models/ServerConfig');
@@ -225,5 +231,15 @@ process.on('SIGTERM', async () => {
 // Exportar client para outros módulos (necessário para MuteManager)
 module.exports = { client };
 
+// Debug: Verificar token antes do login
+console.log('🔍 Debug - Antes do login:');
+console.log('Token length:', process.env.DISCORD_TOKEN ? process.env.DISCORD_TOKEN.length : 0);
+console.log('Token starts with:', process.env.DISCORD_TOKEN ? process.env.DISCORD_TOKEN.substring(0, 10) + '...' : 'N/A');
+
 // Login do bot
+if (!process.env.DISCORD_TOKEN) {
+  console.error('❌ ERRO: DISCORD_TOKEN não está configurado!');
+  process.exit(1);
+}
+
 client.login(process.env.DISCORD_TOKEN);
