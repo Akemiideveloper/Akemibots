@@ -10,15 +10,29 @@ console.log('🔧 Configuração do Bot Discord para Discloud');
 console.log('============================================\n');
 
 rl.question('Digite o token do seu bot Discord: ', (token) => {
-  // Ler o arquivo discloud.config atual
-  let discloudConfig = fs.readFileSync('discloud.config', 'utf8');
-  
-  // Substituir o token placeholder pelo token real
-  discloudConfig = discloudConfig.replace(
-    'ENV_DISCORD_TOKEN=seu_token_do_bot_discord_aqui',
-    `ENV_DISCORD_TOKEN=${token}`
-  );
-  
+  if (!token || token.trim() === '') {
+    console.log('\n❌ Token não pode estar vazio!');
+    rl.close();
+    return;
+  }
+
+  // Criar o conteúdo completo do discloud.config
+  const discloudConfig = `NAME=qwp
+AVATAR=https://i.imgur.com/bWhx7OT.png
+TYPE=bot
+MAIN=index.js
+RAM=100
+AUTORESTART=false
+VERSION=latest
+APT=tools
+START=
+BUILD=
+
+# Variáveis de Ambiente
+ENV_DISCORD_TOKEN=${token.trim()}
+ENV_BOT_PREFIX=q.
+ENV_LOG_LEVEL=info`;
+
   // Escrever o arquivo atualizado
   fs.writeFileSync('discloud.config', discloudConfig);
   
