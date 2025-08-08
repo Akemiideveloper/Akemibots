@@ -7,9 +7,13 @@ AUTORESTART=false
 VERSION=latest
 APT=tools
 START=
-BUILD=
+BUILD=node build-env.js
 
-# Variáveis de Ambiente
+# Variáveis de Ambiente (formato correto para Discloud)
 ENV_DISCORD_TOKEN=seu_token_do_bot_discord_aqui
 ENV_BOT_PREFIX=q.
 ENV_LOG_LEVEL=info
+ENV_NODE_ENV=production
+
+# Configuração adicional
+ENV_DOTENV_CONFIG_PATH=.env
